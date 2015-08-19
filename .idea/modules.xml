@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SSH-demo/SSH-demo.iml" filepath="$PROJECT_DIR$/SSH-demo/SSH-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Servlet-v01/Servlet-v01.iml" filepath="$PROJECT_DIR$/Servlet-v01/Servlet-v01.iml" />
     </modules>
   </component>
