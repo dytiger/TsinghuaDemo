@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<mvc:annotation-driven />
+	<context:component-scan base-package="org.forten.sample" />
+	<context:property-placeholder location="classpath*:/system/*.properties" />
+	<bean id="dataSource" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource" p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.url}" p:username="${jdbc.username}" p:password="${jdbc.password}"
+		p:initialSize="${jdbc.initialSize}" p:maxActive="${jdbc.maxActive}"
+		p:maxWait="${jdbc.maxWait}" p:maxIdle="${jdbc.maxIdle}" p:minIdle="${jdbc.minIdle}" />
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource" p:packagesToScan-ref="packagesToScanList"
+		p:hibernateProperties-ref="hibernateProperties" />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<tx:annotation-driven />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="" p:suffix="" />
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 上传文件的最大限制：10M -->
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+
+	<bean id="cacheManagerEhcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+		<!-- 由于hibernate也使用了Ehcache, 保证双方都使用同一个缓存管理器 -->
+		<property name="shared" value="true" />
+	</bean>
+
+	<util:list id="packagesToScanList">
+		<value>org.forten.**.entity</value>
+	</util:list>
+
+	<util:properties id="hibernateProperties">
+		<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+		<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+		<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+		<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+		<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+		<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+		<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+		<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+		<!-- <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop> -->
+	</util:properties>
+</beans>
