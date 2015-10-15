@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+body{
+    margin-top: 3em;
+}
+
+article{
+    margin-left: 15%;
+    border: 2px solid #060;
+    width: 70%;
+    border-radius: 1em;
+    box-shadow: #999999 5px 5px 13px 1px;
+}
+
+h2{
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 3em;
+    color: #666;
+}
+
+small{
+    font-family: 华文行楷;
+    font-size: 0.6em;
+    color: #999;
+}
+
+p{
+    margin: 1em 4em;
+    background: #eee;
+    font-family: 楷体;
+    font-size: 1.5em;
+}
