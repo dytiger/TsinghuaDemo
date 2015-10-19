@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>hidden属性</title>
+    <script>
+        var toggleHidden = function(){
+            var elem = document.getElementById('test-div');
+            if(elem.hasAttribute('hidden')){
+                elem.removeAttribute('hidden');
+            }else{
+                elem.setAttribute('hidden','hidden');
+            }
+        };
+    </script>
+</head>
+<body>
+    <button onclick="toggleHidden()">切换</button>
+    <div>=======================</div>
+    <div id="test-div" hidden>
+        空山新雨后，天气晚来秋。<br>
+        明月松间照，清泉石上流。<br>
+        竹喧归浣女，莲动下渔舟。<br>
+        随意春芳歇，王孙自可留。
+    </div>
+    <div>=======================</div>
+</body>
+</html>
