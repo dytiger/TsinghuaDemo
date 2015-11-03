@@ -1,0 +1,11 @@
+@charset "UTF-8";/* 声明样式文件使用的字符编码类型 */
+
+div{
+    background-color: green;
+    color: red;
+}
+
+em{
+    font-size: 2em;
+    font-style: normal;
+}

@@ -1,0 +1,6 @@
+@charset "UTF-8";/* 声明样式文件使用的字符编码类型 */
+
+em{
+    font-size: 0.5em;
+    font-style: normal;
+}
