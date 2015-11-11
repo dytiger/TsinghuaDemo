@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form id="myform">
+    <input id="xm" data-msg="xm" class="a b c d e f g" /><br>
+    <input id="tel" data-msg="tel" /><br>
+    <input id="qq" data-msg="qq" /><br>
+    <button id="btn">OK</button>
+</form>
+<span id="msg"></span>
+<script>
+    function hasText(e){
+        var el = e.currentTarget;
+        var classes = el.classList;
+        el.class
+        if(el.value.length==0){
+            document.getElementById('msg').innerHTML = el.getAttribute("data-msg")+"<br>";
+        }else{
+            document.getElementById('msg').innerHTML = document.getElementById('msg').innerHTML.replace(el.getAttribute("data-msg")+"<br>","");
+        }
+    }
+    var inputs = document.getElementsByTagName("input");
+    function canSubmit(){
+        if(document.getElementById("msg").innerHTML.length==0){
+            document.getElementById("btn").disabled = true;
+        }else{
+            document.getElementById("btn").disabled = false;
+        }
+    }
+    for(var i = 0; i<inputs.length;i++){
+        inputs[i].onblur = hasText;
+    }
+
+</script>
+</body>
+</html>

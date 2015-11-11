@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/classes.js"></script>
+    <style>
+        .c1{
+            background: #fee;
+        }
+        .c2{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <button onclick="show();">OK</button>
+
+    <script>
+        function show(){
+            var div = document.getElementById('d1');
+            toggleClass(div,'c1');
+            toggleClass(div,'c2');
+        }
+    </script>
+</body>
+</html>
